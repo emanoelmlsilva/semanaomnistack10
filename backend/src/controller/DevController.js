@@ -39,10 +39,22 @@ module.exports = {
     
         return response.json(dev);
     },
-    async update(request, response){
+    async update(request, response){                
+
+        const {github_username, name, avatar_url, bio, location, techs} = request.body;                    
+
+        const dev = await Dev.updateOne({github_username: github_username},{$set:{
+            name,                
+            avatar_url, 
+            bio, 
+            location, 
+            techs
+        }});
+           
+        return response.json(dev);
 
     },
     async delete(request, response){
-        
+
     }
 }
